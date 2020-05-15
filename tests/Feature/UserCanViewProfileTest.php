@@ -10,8 +10,8 @@ class UserCanViewProfileTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**@test */
-    
+    /** @test */
+
     public function a_user_can_view_user_profiles()
     {
         $this->withoutExceptionHandling();
