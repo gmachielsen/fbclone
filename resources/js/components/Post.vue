@@ -6,17 +6,17 @@
                     <img src="https://media-exp1.licdn.com/dms/image/C5603AQFf4PZxDtUwgA/profile-displayphoto-shrink_200_200/0?e=1594857600&v=beta&t=FxFKyW_SCTQZgaRsZOFT97AeC4YMyaZgN9Sj5-3QAyE" alt="profile image for user" class="w-8 h-8 object-cover rounded-full">
                 </div>
                 <div class="ml-6">
-                    <div class="text-sm font-bold">Name User</div>
-                    <div class="text-sm text-gray-600">12 mins</div>
+                    <div class="text-sm font-bold">{{ post.data.attributes.posted_by.data.attributes.name }}</div>
+                    <div class="text-sm text-gray-600">{{ post.data.attributes.posted_at }}</div>
                 </div>
             </div>
             <div class="mt-4">
-                <p>Not having fun at all.</p>
+                <p>{{ post.data.attributes.body }}</p>
             </div>
         </div>
 
-        <div class="w-full">
-            <img src="https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="post image" class="w-full">
+        <div class="w-full" v-if="post.data.attributes.image">
+            <img :src="post.data.attributes.image" alt="post image" class="w-full">
         </div>
 
         <div class="px-4 pt-2 flex justify-between text-gray-700 text-sm">
@@ -45,7 +45,11 @@
 
 <script>
     export default {
-        name: "Post"
+        name: "Post",
+
+        props: [
+            'post',
+        ]
     }
 </script>
 
