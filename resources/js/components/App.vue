@@ -30,7 +30,7 @@
 
         created() {
             this.$store.dispatch('setPageTitle', this.$route.meta.title);
-        }
+        },
 
         watch: {
             $route(to, from) {
