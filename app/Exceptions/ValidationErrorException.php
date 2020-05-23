@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 
-class UserNotFoundException extends Exception
+class ValidationErrorException extends Exception
 {
     /**
      * Render the exception as an HTTP response.
@@ -15,12 +15,12 @@ class UserNotFoundException extends Exception
     public function render($request)
     {
         return response()->json([
-            'errors' => [
-                'code' => 404,
-                'title' => 'User Not Found',
-                'detail' => 'Unable to locate the user with the given information.',
+            ' errors' => [
+                'code' => 422,
+                'title' => 'Validation Error',
+                'detail' => ' Your request is malformed or missing fields.',
+                'meta' => json_decode($this->getMessage()),
             ]
-        ], 404);
-
+        ], 422);
     }
 }

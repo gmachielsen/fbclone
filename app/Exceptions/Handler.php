@@ -52,4 +52,14 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    // public function render($request, Exception $excption)
+    // {
+    //     if ($exception instanceof ValidationException) {
+    //         throw new ValidationErrorException(json_encode($exception->errors()));
+    //     }
+
+    //     return parent::render($request, $exception);
+    // }
 }
+
