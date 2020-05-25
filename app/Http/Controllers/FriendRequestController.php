@@ -27,7 +27,7 @@ class FriendRequestController extends Controller
 
         try {
             User::findOrFail($data['friend_id'])
-                ->friends()->attach(auth()->user());
+                ->friends()->syncWithoutDetaching(auth()->user());
         } catch (ModelNotFoundException $e) {
             throw new UserNotFoundException();
         }
@@ -39,3 +39,6 @@ class FriendRequestController extends Controller
         );
     }
 }
+
+
+// sync rule 30 withoutdetaching enables to save only one record in order to prevent multiple friendrequests of one user. 
