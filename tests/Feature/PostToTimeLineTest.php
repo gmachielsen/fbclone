@@ -20,12 +20,7 @@ class PostToTimeLineTest extends TestCase
        $this->actingAs($user = factory(User::class)->create(), 'api');
 
        $response = $this->post('/api/posts', [
-           'data' => [
-               'type' => 'posts',
-               'attributes' => [
-                   'body' => 'Testing Body',
-               ]
-           ]
+        'body' => 'Testing Body',
        ]);
 
        $post = Post::first();
