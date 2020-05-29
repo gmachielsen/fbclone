@@ -33,6 +33,14 @@ class LoginController extends Controller
      *
      * @return void
      */
+
+    public function logout(Request $request)
+    {
+        $this->doLogout($request);
+
+        return redirect()->route('login');
+    }
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

@@ -2009,6 +2009,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Nav",
@@ -2124,9 +2127,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post",
-  props: ['post']
+  props: ['post'],
+  data: function data() {
+    return {
+      comments: false,
+      commentBody: ''
+    };
+  }
 });
 
 /***/ }),
@@ -2170,6 +2205,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -38774,6 +38810,35 @@ var render = function() {
                 ]
               )
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass:
+                "px-6 border-b-2 border-white h-full flex items-center ",
+              attrs: { to: "/friends" }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "fill-current w-5 h-5",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 24 24"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M 25.5 14 C 25.5 7.649 20.351 2.5 14 2.5 C 7.649 2.5 2.5 7.649 2.5 14 C 2.5 20.351 7.649 25.5 14 25.5 C 20.351 25.5 25.5 20.351 25.5 14 Z M 27 14 C 27 21.18 21.18 27 14 27 C 6.82 27 1 21.18 1 14 C 1 6.82 6.82 1 14 1 C 21.18 1 27 6.82 27 14 Z M 7.479 14 L 7.631 14 C 7.933 14 8.102 14.338 7.934 14.591 C 7.334 15.491 6.983 16.568 6.983 17.724 L 6.983 18.221 C 6.983 18.342 6.99 18.461 7.004 18.578 C 7.03 18.802 6.862 19 6.637 19 L 6.123 19 C 5.228 19 4.5 18.25 4.5 17.327 C 4.5 15.492 5.727 14 7.479 14 Z M 20.521 14 C 22.274 14 23.5 15.492 23.5 17.327 C 23.5 18.25 22.772 19 21.878 19 L 21.364 19 C 21.139 19 20.97 18.802 20.997 18.578 C 21.01 18.461 21.017 18.342 21.017 18.221 L 21.017 17.724 C 21.017 16.568 20.667 15.491 20.067 14.591 C 19.899 14.338 20.067 14 20.369 14 L 20.521 14 Z M 8.25 13 C 7.147 13 6.25 11.991 6.25 10.75 C 6.25 9.384 7.035 8.5 8.25 8.5 C 9.465 8.5 10.25 9.384 10.25 10.75 C 10.25 11.991 9.353 13 8.25 13 Z M 19.75 13 C 18.647 13 17.75 11.991 17.75 10.75 C 17.75 9.384 18.535 8.5 19.75 8.5 C 20.965 8.5 21.75 9.384 21.75 10.75 C 21.75 11.991 20.853 13 19.75 13 Z M 15.172 13.5 C 17.558 13.5 19.5 15.395 19.5 17.724 L 19.5 18.221 C 19.5 19.202 18.683 20 17.677 20 L 10.323 20 C 9.317 20 8.5 19.202 8.5 18.221 L 8.5 17.724 C 8.5 15.395 10.441 13.5 12.828 13.5 L 15.172 13.5 Z M 16.75 9 C 16.75 10.655 15.517 12 14 12 C 12.484 12 11.25 10.655 11.25 9 C 11.25 7.15 12.304 6 14 6 C 15.697 6 16.75 7.15 16.75 9 Z"
+                    }
+                  })
+                ]
+              )
+            ]
           )
         ],
         1
@@ -39003,10 +39068,21 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("p", [_vm._v("Jane Smith and 137 others")])
+            _c("p", [
+              _vm._v(
+                _vm._s(_vm.post.data.attributes.likes.like_count) + " likes"
+              )
+            ])
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", [
+            _c("p", [
+              _vm._v(
+                _vm._s(_vm.post.data.attributes.comments.comment_count) +
+                  " comments"
+              )
+            ])
+          ])
         ]
       ),
       _vm._v(" "),
@@ -39018,7 +39094,20 @@ var render = function() {
             "button",
             {
               staticClass:
-                "flex justify-center py-2 rounded-lg text-sm text-gray-700 w-full hover:bg-gray-200"
+                "flex justify-center py-2 rounded-lg text-sm w-full focus:outline-none",
+              class: [
+                _vm.post.data.attributes.likes.user_likes_post
+                  ? "bg-blue-600 text-white"
+                  : ""
+              ],
+              on: {
+                click: function($event) {
+                  return _vm.$store.dispatch("likePost", {
+                    postId: _vm.post.data.post_id,
+                    postKey: _vm.$vnode.key
+                  })
+                }
+              }
             },
             [
               _c(
@@ -39048,7 +39137,12 @@ var render = function() {
             "button",
             {
               staticClass:
-                "flex justify-center py-2 rounded-lg text-sm text-gray-700 w-full hover:bg-gray-200"
+                "flex justify-center py-2 rounded-lg text-sm text-gray-700 w-full focus:outline-none",
+              on: {
+                click: function($event) {
+                  _vm.comments = !_vm.comments
+                }
+              }
             },
             [
               _c(
@@ -39074,7 +39168,98 @@ var render = function() {
             ]
           )
         ]
-      )
+      ),
+      _vm._v(" "),
+      _vm.comments
+        ? _c(
+            "div",
+            { staticClass: "border-t border-gray-400 p-4 pt-2" },
+            [
+              _c("div", { staticClass: "flex" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.commentBody,
+                      expression: "commentBody"
+                    }
+                  ],
+                  staticClass:
+                    "w-full pl-4 h-8 bg-gray-200 rounded-lg focus:outline-none",
+                  attrs: { type: "text", name: "comment" },
+                  domProps: { value: _vm.commentBody },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.commentBody = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.commentBody
+                  ? _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-gray-200 ml-2 px-2 py-1 rounded focus:outline-none",
+                        on: {
+                          click: function($event) {
+                            _vm.$store.dispatch("commentPost", {
+                              body: _vm.commentBody,
+                              postId: _vm.post.data.post_id,
+                              postKey: _vm.$vnode.key
+                            })
+                            _vm.commentBody = ""
+                          }
+                        }
+                      },
+                      [_vm._v("\n                Post\n            ")]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.post.data.attributes.comments.data, function(comment) {
+                return _c("div", { staticClass: "flex my-4 items-center" }, [
+                  _vm._m(1, true),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ml-4 flex-1" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "bg-gray-200",
+                        attrs: { "rounded-lg": "", "p-2": "", "text-sm": "" }
+                      },
+                      [
+                        _c("a", {
+                          staticClass: "font-bold text-blue-700",
+                          attrs: {
+                            href:
+                              "/users/" +
+                              comment.data.attributes.commented_by.data.user_id
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "inline" }, [
+                          _vm._v(_vm._s(comment.data.attributes.body))
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-xs pl-2" }, [
+                      _c("p", [
+                        _vm._v(_vm._s(comment.data.attributes.commented_at))
+                      ])
+                    ])
+                  ])
+                ])
+              })
+            ],
+            2
+          )
+        : _vm._e()
     ]
   )
 }
@@ -39098,7 +39283,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("123 comments")])])
+    return _c("div", { staticClass: "w-8" }, [
+      _c("img", {
+        staticClass: "w-8 h-8 object-cover rounded-full",
+        attrs: {
+          src:
+            "https://media-exp1.licdn.com/dms/image/C5603AQFf4PZxDtUwgA/profile-displayphoto-shrink_200_200/0?e=1594857600&v=beta&t=FxFKyW_SCTQZgaRsZOFT97AeC4YMyaZgN9Sj5-3QAyE",
+          alt: "profile image for user"
+        }
+      })
+    ])
   }
 ]
 render._withStripped = true
@@ -39169,8 +39363,8 @@ var render = function() {
       _vm._v(" "),
       _vm.newsStatus.postsStatus === "loading"
         ? _c("p", [_vm._v("Loading posts...")])
-        : _vm._l(_vm.posts.data, function(post) {
-            return _c("Post", { key: post.data.post_id, attrs: { post: post } })
+        : _vm._l(_vm.posts.data, function(post, postKey) {
+            return _c("Post", { key: postKey, attrs: { post: post } })
           })
     ],
     2
@@ -56136,6 +56330,28 @@ var actions = {
       commit('pushPost', res.data);
       commit('updateMessage', '');
     })["catch"](function (error) {});
+  },
+  likePost: function likePost(_ref3, data) {
+    var commit = _ref3.commit,
+        state = _ref3.state;
+    axios.post('/api/posts/' + data.postId + '/like').then(function (res) {
+      commit('pushLikes', {
+        likes: res.data,
+        postKey: data.postKey
+      });
+    })["catch"](function (error) {});
+  },
+  commentPost: function commentPost(_ref4, data) {
+    var commit = _ref4.commit,
+        state = _ref4.state;
+    axios.post('/api/posts/' + data.postId + '/comment', {
+      body: data.body
+    }).then(function (res) {
+      commit('pushComments', {
+        comments: res.data,
+        postKey: data.postKey
+      });
+    })["catch"](function (error) {});
   }
 };
 var mutations = {
@@ -56150,6 +56366,12 @@ var mutations = {
   },
   pushPost: function pushPost(state, post) {
     state.newsPosts.data.unshift(post);
+  },
+  pushLikes: function pushLikes(state, data) {
+    state.newsPosts.data[data.postKey].data.attributes.likes = data.likes;
+  },
+  pushComments: function pushComments(state, data) {
+    state.newsPosts.data[data.postKey].data.attributes.comments = data.comments;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

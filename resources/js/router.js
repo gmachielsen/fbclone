@@ -18,6 +18,6 @@ export default new VueRouter({
         {
             path: '/users/:userId', name: 'user.show', component: UserShow,
             meta: { title: 'Profile' }
-        }
+        },
     ]
 });

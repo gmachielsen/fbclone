@@ -21,7 +21,7 @@ class PostController extends Controller
 
         return new PostCollection(
             Post::whereIn('user_id', [$friends->pluck('user_id'), $friends->pluck('friend_id')])
-                -get()
+                ->get()
                 // get gives back all the results
         );
     }
@@ -29,6 +29,7 @@ class PostController extends Controller
     {
         $data = request()->validate([
             'body' => '',
+            // 'data.attributes.body' => '',
         ]);
 
 

@@ -12,4 +12,6 @@ class AuthUserController extends Controller
     {
         return new UserResource(auth()->user());
     }
+
+
 }
